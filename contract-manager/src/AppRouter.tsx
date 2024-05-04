@@ -6,7 +6,7 @@ import FinanceContracts from "./pages/FinanceContracts";
 function AppRouter() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/home" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/legal_contracts" element={<LegalContracts />} />
       <Route path="finance_contracts" element={<FinanceContracts />} />
