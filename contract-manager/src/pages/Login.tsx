@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import "./Login.css";
+import Toast from './LoginToast';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showToast, setShowToast] = useState(false);  // State to control the visibility of the toast
 
   const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
@@ -15,8 +17,20 @@ function Login() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // TODO: Implement login logic
+    // Assuming the password is always wrong for demonstration
+    setShowToast(true); // Show the toast when the form is submitted
   };
+
+  // Additional handler for directly showing the toast via button click
+  const handleShowToast = () => {
+    setShowToast(true); // This will show the toast when the button is clicked
+  };
+
+  const handleLoginClick = () => {
+
+    setShowToast(true);
+
+    }
 
   return (
     <div className="login-background">
@@ -32,8 +46,13 @@ function Login() {
         </label>
         <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
         <br />
-        <button type="submit">Login</button>
+        <button type="button" onClick={handleShowToast}>Login1</button> {}
       </form>
+      <Toast
+        message="Your password is wrong"
+        isVisible={showToast}
+        onClose={() => setShowToast(false)}
+      />
     </div>
   );
 }
