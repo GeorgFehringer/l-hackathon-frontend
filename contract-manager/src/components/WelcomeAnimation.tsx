@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
+import "../pages/Home.css";
 
 const WelcomeAnimation: React.FC = () => {
   const [text, setText] = useState<string>("");
@@ -15,7 +16,7 @@ const WelcomeAnimation: React.FC = () => {
       } else {
         clearInterval(intervalId);
       }
-    }, 100); // Adjust the interval as needed
+    }, 150);
 
     return () => clearInterval(intervalId);
   }, []);
