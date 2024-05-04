@@ -1,0 +1,32 @@
+import React, { useState, useEffect } from "react";
+import { Col, Row } from "react-bootstrap";
+
+const WelcomeAnimation: React.FC = () => {
+  const [text, setText] = useState<string>("");
+
+  useEffect(() => {
+    const welcomeText = "Welcome to COSMO";
+    let index = 0;
+
+    const intervalId = setInterval(() => {
+      if (index < welcomeText.length) {
+        setText(welcomeText.substring(0, index + 1));
+        index++;
+      } else {
+        clearInterval(intervalId);
+      }
+    }, 100); // Adjust the interval as needed
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  return (
+    <Col xs="auto" className="home_content text-center">
+      <Row>
+        <h1>{text}</h1>
+      </Row>
+    </Col>
+  );
+};
+
+export default WelcomeAnimation;

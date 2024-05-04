@@ -1,6 +1,7 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import "./Home.css";
+import WelcomeAnimation from "../components/WelcomeAnimation";
 
 function Home() {
   return (
@@ -13,10 +14,7 @@ function Home() {
         muted
       />
       <Container className="home-content-container">
-        <div className="home_content">
-          <h1>Welcome</h1>
-          <p>To COSMO.</p>
-        </div>
+        <WelcomeAnimation></WelcomeAnimation>
       </Container>
     </>
   );
