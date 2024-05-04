@@ -8,9 +8,11 @@ import ToastNotification from "../components/ToastNotification";
 function Home() {
   const [showToast, setShowToast] = useState(false);
   const handleSignUpClick = () => {
-    if (!showToast) {
-      setShowToast(!showToast);
-    }
+    setShowToast(true);
+  };
+
+  const handleCloseToast = () => {
+    setShowToast(false);
   };
 
   return (
@@ -27,6 +29,7 @@ function Home() {
           <ToastNotification
             title={"Account creation procedure"}
             text={"Please contact the admin via email"}
+            onClose={handleCloseToast}
           />
         )}
         <WelcomeAnimation></WelcomeAnimation>

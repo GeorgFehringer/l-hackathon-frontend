@@ -6,7 +6,7 @@ const WelcomeAnimation: React.FC = () => {
   const [text, setText] = useState<string>("");
 
   useEffect(() => {
-    const welcomeText = "Welcome to COSMO";
+    const welcomeText = "Welcome to COSMOS";
     let index = 0;
 
     const intervalId = setInterval(() => {
@@ -22,7 +22,7 @@ const WelcomeAnimation: React.FC = () => {
   }, []);
 
   return (
-    <Col xs="auto" className="home_content text-center">
+    <Col xs="auto" className="home_content text-center title-font">
       <Row>
         <h1>{text}</h1>
       </Row>
