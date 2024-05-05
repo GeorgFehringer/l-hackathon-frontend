@@ -6,7 +6,7 @@ const WelcomeAnimation: React.FC = () => {
   const [text, setText] = useState<string>("");
 
   useEffect(() => {
-    const welcomeText = "Welcome to COSMOS";
+    const welcomeText = "Welcome to PDF_GO";
     let index = 0;
 
     const intervalId = setInterval(() => {
