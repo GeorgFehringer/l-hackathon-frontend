@@ -6,36 +6,32 @@ import { useEffect, useState } from "react";
 import { SimpleLoginModel } from "../components/Context/AuthContext/SimpleLoginModel";
 import { useAxios } from "../components/Context/AuthContext/SimpleAxiosContextWithAuth";
 import { SimpleUserModel } from "../components/Context/AuthContext/SimpleUserModel";
+import {
+  PdfDocument,
+  PdfDocumentListItem,
+} from "../components/PdfDocumentModel";
 // TODO for login page: implement login form (with username and password);
 // Call the simple auth hook here and on submit use the login function
 // (copy and change the example with text field and password field instead of select)
-interface PdfDocument {
-  pdfName: string;
-  pdfCount: number;
-  pdfLink: string;
-}
 
 function TestPage() {
-  const dummyPdfDocuments: PdfDocument[] = [
+  const dummyPdfDocuments: PdfDocumentListItem[] = [
     {
       pdfName: "Document 1",
-      pdfCount: 1,
-      pdfLink: "/document1.pdf",
+      id: 1,
     },
     {
       pdfName: "Document 2",
-      pdfCount: 2,
-      pdfLink: "/document2.pdf",
+      id: 2,
     },
     {
       pdfName: "Document 3",
-      pdfCount: 3,
-      pdfLink: "/document3.pdf",
+      id: 3,
     },
   ];
 
   //login task
-  const { login } = useSimpleAuth();
+  //const { login } = useSimpleAuth();
   const [username, setUsername] = useState<string>("1");
   const [password, setPassword] = useState<string>("1");
 
@@ -47,25 +43,34 @@ function TestPage() {
       password: password,
     };
 
-    login(loginModel);
+    //login(loginModel);
   };
 
   const { axiosApi } = useAxios();
+  const [currentDocument, setCurrentDocument] = useState<PdfDocument>();
 
-  const [users, setUsers] = useState<SimpleUserModel[]>([]);
-  useEffect(() => {
-    axiosApi.get<SimpleUserModel[]>("users").then((res) => {
-      setUsers(res.data);
-    });
-  }, []);
+  // const [users, setUsers] = useState<SimpleUserModel[]>([]);
+  // useEffect(() => {
+  //   axiosApi.get<SimpleUserModel[]>("users").then((res) => {
+  //     setUsers(res.data);
+  //   });
+  // }, []);
 
   return (
     <>
       <Row>
         <Col>
-          <ContractsSidebar pdfDocuments={dummyPdfDocuments}></ContractsSidebar>
+          <ContractsSidebar
+            pdfDocuments={dummyPdfDocuments}
+            setCurrentDocument={setCurrentDocument}
+          ></ContractsSidebar>
         </Col>
-        <Col className="md=5">
+        <Col className="md-5">
+          {currentDocument?.id}
+          {currentDocument?.pdfName}
+          {currentDocument?.text}
+        </Col>
+        <Col className="md-5">
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicUsername">
               <Form.Label>Username</Form.Label>

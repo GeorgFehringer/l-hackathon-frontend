@@ -8,10 +8,42 @@
 // - On document list item click => display document in viewer and change right bar details. => implement using a useState Hook where on click you set current document to the one clicked
 // - Right bar receives current document as prop, document viewer receives document as a prop.
 
-interface Props {}
+import { Col, Row } from "react-bootstrap";
+import ContractsSidebar from "../components/ContractsSidebar";
+import {
+  PdfDocument,
+  PdfDocumentListItem,
+} from "../components/PdfDocumentModel";
+import { useState } from "react";
 
-function DocumentsLayout(props: Props) {
-  return <></>;
+interface Props {
+  pdfDocuments: PdfDocumentListItem[];
+}
+
+function DocumentsLayout({ pdfDocuments }: Props) {
+  const [currentDocument, setCurrentDocument] = useState<PdfDocument>();
+
+  return (
+    <>
+      <Row>
+        <Col>
+          {/* top bar with search and upload for legal, and only search for finance */}
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <ContractsSidebar
+            pdfDocuments={pdfDocuments}
+            setCurrentDocument={setCurrentDocument}
+          ></ContractsSidebar>
+        </Col>
+        <Col>
+          {/*TODO: document viewer area for the pdf text that is received, and additional save button for finance*/}
+        </Col>
+        <Col>{/* TODO: right sideBar */}</Col>
+      </Row>
+    </>
+  );
 }
 
 export default DocumentsLayout;

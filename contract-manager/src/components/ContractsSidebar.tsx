@@ -1,18 +1,14 @@
 import { Nav } from "react-bootstrap";
 import "./ContractsSidebar.css";
 import PdfSidebarCard from "./PdfSidebarCard";
-
-interface PdfDocument {
-  pdfName: string;
-  pdfCount: number;
-  pdfLink: string;
-}
+import { PdfDocument, PdfDocumentListItem } from "./PdfDocumentModel";
 
 interface Props {
-  pdfDocuments: PdfDocument[];
+  pdfDocuments: PdfDocumentListItem[];
+  setCurrentDocument: (document: PdfDocument) => void;
 }
 
-function ContractsSidebar({ pdfDocuments }: Props) {
+function ContractsSidebar({ pdfDocuments, setCurrentDocument }: Props) {
   return (
     <>
       <Nav
@@ -25,6 +21,7 @@ function ContractsSidebar({ pdfDocuments }: Props) {
           <PdfSidebarCard
             key={index}
             pdfDocument={pdfDocument}
+            setCurrentDocument={setCurrentDocument}
           ></PdfSidebarCard>
         ))}
       </Nav>
