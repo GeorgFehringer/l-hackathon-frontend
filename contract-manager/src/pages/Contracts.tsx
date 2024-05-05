@@ -10,35 +10,36 @@ import { PdfDocument } from "../components/PdfDocumentModel";
 function Contracts() {
   //TODO: GET the documents from backend and pass them to the layout in a usable format
   //(get documents list then get all documents details and create a new list)
+
   const { axiosApi } = useAxios();
   const [pdfDocuments, setPdfDocuments] = useState<PdfDocument[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const { userData } = useSimpleAuth();
+  const [pdfIds, setPdfIds] = useState<string[]>();
 
   useEffect(() => {
     axiosApi
-      .get<string[]>("/pdf")
+      .get<string[]>(`/pdf`)
       .then((res) => {
-        const pdfIds = res.data;
-        const promises = pdfIds.map((pdfId) =>
-          axiosApi.get<PdfDocument>(`/pdf/${pdfId}`)
-        );
-        Promise.all(promises)
-          .then((pdfs) => {
-            setPdfDocuments(pdfs.map((pdf) => pdf.data));
-            setLoading(false);
-          })
-          .catch((error) => {
-            setError("Error fetching PDF documents: " + error.message);
-            setLoading(false);
-          });
+        setPdfIds(res.data);
+        createDocumentList();
+        setLoading(false);
       })
       .catch((error) => {
-        setError("Error fetching PDF document IDs: " + error.message);
+        setError("Error fetching PDF documents: " + error.message);
         setLoading(false);
       });
   }, []);
+
+  const createDocumentList = () => {
+    const documentList: PdfDocument[] = [];
+    for (let id in pdfIds) {
+      axiosApi.get<PdfDocument>(`pdf/${id}`).then((res) => {
+        documentList.push(res.data);
+      });
+    }
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -52,7 +53,7 @@ function Contracts() {
     <DocumentsLayout
       pdfDocuments={pdfDocuments}
       // userRole={userData?.role || ""}
-    />
+    ></DocumentsLayout>
   );
 }
 
