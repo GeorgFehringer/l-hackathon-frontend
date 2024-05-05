@@ -24,13 +24,15 @@ function Contracts() {
   const [pdfIds, setPdfIds] = useState<string[]>();
 
   useEffect(() => {
+    //console.log(process.env);
+    //console.log(`Making API call to: ${process.env.REACT_APP_BASE_URL}${'/pdf'}`);
     axiosApi
-      .get<ApiResponse>(`/pdf`)
+      .get<ApiResponse>('/pdf')
       .then((res) => {
         setPdfIds(res.data.PDF_IDs);
         createDocumentList(res.data.PDF_IDs);
         setLoading(false);
-        console.log(pdfDocuments);
+        //console.log(pdfDocuments);
       })
       .catch((error) => {
         setError("Error fetching PDF documents: " + error.message);
@@ -49,6 +51,7 @@ function Contracts() {
         })
         .catch((error) => console.log(error));
     }
+    console.log("das hier letzte"+documentList);
     setPdfDocuments(documentList);
   };
 

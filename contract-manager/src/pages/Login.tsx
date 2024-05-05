@@ -32,7 +32,7 @@ function Login() {
     e.preventDefault();
     const loginModel = { username, password };
     //console.log(loginModel);
-    console.log(users);
+    //console.log(users);
     console.log("i was here");
     //const userExists = Object.values(users).some(user => user.username === username && user.password === password);
     const userExists = users.some(user => user.username === username && user.password === password);

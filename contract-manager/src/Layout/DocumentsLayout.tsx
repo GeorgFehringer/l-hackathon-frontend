@@ -22,7 +22,7 @@ interface Props {
 
 function DocumentsLayout({ pdfDocuments }: Props) {
   const [currentDocument, setCurrentDocument] = useState<PdfDocument>();
-  console.log(pdfDocuments);
+  //console.log(pdfDocuments);
   return (
     <>
       <Row>
@@ -39,6 +39,7 @@ function DocumentsLayout({ pdfDocuments }: Props) {
         </Col>
         <Col>
           {/*TODO: document viewer area for the pdf text that is received, and additional save button for finance*/}
+          console.log(currentDocument);
           <PdfTextViewer text={currentDocument?.text}></PdfTextViewer>
           <PdfModifiableTextViewer
             text={currentDocument?.text}
