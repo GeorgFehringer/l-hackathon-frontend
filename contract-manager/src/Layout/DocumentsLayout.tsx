@@ -10,14 +10,13 @@
 
 import { Col, Row } from "react-bootstrap";
 import ContractsSidebar from "../components/ContractsSidebar";
-import {
-  PdfDocument,
-  PdfDocumentListItem,
-} from "../components/PdfDocumentModel";
+import { PdfDocument } from "../components/PdfDocumentModel";
 import { useState } from "react";
+import PdfTextViewer from "../components/PdfTextViewer";
 
 interface Props {
-  pdfDocuments: PdfDocumentListItem[];
+  pdfDocuments: PdfDocument[];
+  // userRole: string;
 }
 
 function DocumentsLayout({ pdfDocuments }: Props) {
@@ -39,6 +38,7 @@ function DocumentsLayout({ pdfDocuments }: Props) {
         </Col>
         <Col>
           {/*TODO: document viewer area for the pdf text that is received, and additional save button for finance*/}
+          <PdfTextViewer text={currentDocument?.text}></PdfTextViewer>
         </Col>
         <Col>{/* TODO: right sideBar */}</Col>
       </Row>

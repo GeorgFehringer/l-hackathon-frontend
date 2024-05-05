@@ -1,10 +1,10 @@
 import { Nav } from "react-bootstrap";
 import "./ContractsSidebar.css";
 import PdfSidebarCard from "./PdfSidebarCard";
-import { PdfDocument, PdfDocumentListItem } from "./PdfDocumentModel";
+import { PdfDocument } from "./PdfDocumentModel";
 
 interface Props {
-  pdfDocuments: PdfDocumentListItem[];
+  pdfDocuments: PdfDocument[];
   setCurrentDocument: (document: PdfDocument) => void;
 }
 
