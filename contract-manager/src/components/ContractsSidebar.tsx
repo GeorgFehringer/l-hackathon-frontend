@@ -4,7 +4,7 @@ import PdfSidebarCard from "./PdfSidebarCard";
 import { PdfDocument } from "./PdfDocumentModel";
 
 interface Props {
-  pdfDocuments: PdfDocument[];
+  pdfDocuments?: PdfDocument[];
   setCurrentDocument: (document: PdfDocument) => void;
 }
 
@@ -17,7 +17,7 @@ function ContractsSidebar({ pdfDocuments, setCurrentDocument }: Props) {
         onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
       >
         <div className="sidebar-sticky"></div>
-        {pdfDocuments.map((pdfDocument, index) => (
+        {pdfDocuments?.map((pdfDocument, index) => (
           <PdfSidebarCard
             key={index}
             pdfDocument={pdfDocument}

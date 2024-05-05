@@ -5,5 +5,5 @@ export interface PdfDocument {
 }
 
 export interface PdfDocumentListItem {
-  PDF_ID: string;
+  PDF_IDs: string;
 }

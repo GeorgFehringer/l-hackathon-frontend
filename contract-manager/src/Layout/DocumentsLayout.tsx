@@ -13,15 +13,16 @@ import ContractsSidebar from "../components/ContractsSidebar";
 import { PdfDocument } from "../components/PdfDocumentModel";
 import { useState } from "react";
 import PdfTextViewer from "../components/PdfTextViewer";
+import PdfModifiableTextViewer from "../components/PdfModifiableTextViewer";
 
 interface Props {
-  pdfDocuments: PdfDocument[];
+  pdfDocuments?: PdfDocument[];
   // userRole: string;
 }
 
 function DocumentsLayout({ pdfDocuments }: Props) {
   const [currentDocument, setCurrentDocument] = useState<PdfDocument>();
-
+  console.log(pdfDocuments);
   return (
     <>
       <Row>
@@ -39,6 +40,9 @@ function DocumentsLayout({ pdfDocuments }: Props) {
         <Col>
           {/*TODO: document viewer area for the pdf text that is received, and additional save button for finance*/}
           <PdfTextViewer text={currentDocument?.text}></PdfTextViewer>
+          <PdfModifiableTextViewer
+            text={currentDocument?.text}
+          ></PdfModifiableTextViewer>
         </Col>
         <Col>{/* TODO: right sideBar */}</Col>
       </Row>
